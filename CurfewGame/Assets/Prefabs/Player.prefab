@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  attackCooldown: 0.5
   projectile: {fileID: 7870340470976002604, guid: a6b8a637143d9457e91c24567272f621, type: 3}
 --- !u!114 &-3509659577877622845
 MonoBehaviour:

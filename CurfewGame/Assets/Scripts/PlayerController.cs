@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour
         
     }
     public float speed = 10.0f;
+    public float attackCooldown = 1.0f;
 
     private float horizontalInput;
     private float verticalInput;
+    private float currentCooldown = 0.0f;
 
     public GameObject projectile;
 
@@ -27,15 +29,19 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * speed * horizontalInput * Time.deltaTime);
         transform.Translate(Vector3.forward * speed * verticalInput * Time.deltaTime);
 
-        // Spawn a projectile if we press the space bar
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Spawn a projectile if we press the space bar and our cooldown is done
+        if (Input.GetKeyDown(KeyCode.Space) && currentCooldown <= 0)
         {
             SpawnProjectile();
+        } else
+        {
+            currentCooldown -= Time.deltaTime;
         }
     }
 
     void SpawnProjectile()
     {
+        currentCooldown = attackCooldown;
         Instantiate(projectile, transform.position, transform.rotation);
     }
 }
